@@ -11,18 +11,12 @@ export { useSignIn } from './composables/useSignIn';
 export { useSignMessage } from './composables/useSignMessage';
 export { useSignTransaction } from './composables/useSignTransaction';
 export { useSignAndSendTransaction } from './composables/useSignAndSendTransaction';
-export { useSolanaTransaction } from './composables/useSolanaTransaction';
 export { useSolanaWallets } from './composables/useSolanaWallets';
 export { useWalletAccountMessageSigner } from './composables/useWalletAccountMessageSigner';
 export { useWalletAccountTransactionSigner } from './composables/useWalletAccountTransactionSigner';
 export { useWalletAccountTransactionSendingSigner } from './composables/useWalletAccountTransactionSendingSigner';
 
 // Export Solana-specific types
-export type {
-  Base64EncodedWireTransaction,
-  SignTransactionOptions,
-  UseSolanaTransactionReturn,
-} from './composables/useSolanaTransaction';
 export type { OnlySolanaChains } from './composables/chain';
 
 // Export Solana-specific UI components

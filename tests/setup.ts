@@ -27,3 +27,10 @@ vi.mock('@wallet-standard/app', () => {
     }),
   };
 });
+
+// Note: @solana/kit is mocked via alias in vitest.config.ts
+
+// Mock @solana/promises
+vi.mock('@solana/promises', () => ({
+  getAbortablePromise: (promise: Promise<any>) => promise,
+}));

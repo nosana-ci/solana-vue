@@ -71,7 +71,6 @@ Essential generic functionality needed for Solana apps:
 - `useSignAndSendTransaction()` - Sign and send Solana transactions
 - `useSignMessage()` - Sign messages
 - `useSignIn()` - Sign In With Solana
-- `useSolanaTransaction()` - Legacy base64 transaction signing (for backward compatibility)
 - `useWalletAccountMessageSigner()` - Create a message signer
 - `useWalletAccountTransactionSigner()` - Create a transaction signer (non-sending)
 - `useWalletAccountTransactionSendingSigner()` - Create a transaction signer (sending)
