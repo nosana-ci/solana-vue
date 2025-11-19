@@ -3,16 +3,14 @@ import { ref, nextTick } from 'vue';
 import { useSignMessage } from '../src/composables/useSignMessage';
 import { SolanaSignMessage } from '@solana/wallet-standard-features';
 import type { SolanaSignMessageFeature } from '@solana/wallet-standard-features';
-import {
-  createMockWalletAccount,
-  createMockUiWallet,
-} from './helpers';
+import { createMockWalletAccount, createMockUiWallet } from './helpers';
 
 // Mock @solana/kit before any imports that use it
 vi.mock('@solana/kit', () => ({
   address: (addr: string) => addr,
   SolanaError: class extends Error {},
-  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED: 'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
+  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED:
+    'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
 }));
 
 // Mock @solana/promises

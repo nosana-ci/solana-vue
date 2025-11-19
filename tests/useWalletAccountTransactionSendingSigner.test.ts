@@ -47,16 +47,19 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     };
 
     // Mock the sign and send transaction feature
-    const mockSignAndSendFeature: SolanaSignAndSendTransactionFeature[typeof SolanaSignAndSendTransaction] = {
-      signAndSendTransaction: vi.fn().mockImplementation(async (input: { account: any; transaction: Uint8Array }) => {
-        // Return an array with the result
-        return [
-          {
-            signature: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
-          },
-        ];
-      }),
-    } as unknown as SolanaSignAndSendTransactionFeature[typeof SolanaSignAndSendTransaction];
+    const mockSignAndSendFeature: SolanaSignAndSendTransactionFeature[typeof SolanaSignAndSendTransaction] =
+      {
+        signAndSendTransaction: vi
+          .fn()
+          .mockImplementation(async (input: { account: any; transaction: Uint8Array }) => {
+            // Return an array with the result
+            return [
+              {
+                signature: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
+              },
+            ];
+          }),
+      } as unknown as SolanaSignAndSendTransactionFeature[typeof SolanaSignAndSendTransaction];
 
     mockGetWalletAccountFeature.mockReturnValue(mockSignAndSendFeature);
     mockGetWalletAccountForUiWalletAccount.mockReturnValue(mockAccount);
@@ -68,7 +71,6 @@ describe('useWalletAccountTransactionSendingSigner', () => {
 
     expect(signer.value).toBeNull();
   });
-
 
   it('should return signer when account is provided', () => {
     const signer = useWalletAccountTransactionSendingSigner(mockUiAccount, 'solana:devnet');
@@ -124,4 +126,3 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     expect(signer.value).toBeDefined();
   });
 });
-

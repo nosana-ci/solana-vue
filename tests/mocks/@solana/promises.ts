@@ -3,4 +3,3 @@ export const getAbortablePromise = <T>(promise: Promise<T>, signal?: AbortSignal
   signal?.throwIfAborted();
   return promise;
 };
-

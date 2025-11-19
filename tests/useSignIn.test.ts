@@ -3,11 +3,7 @@ import { ref } from 'vue';
 import { useSignIn } from '../src/composables/useSignIn';
 import { SolanaSignIn } from '@solana/wallet-standard-features';
 import type { SolanaSignInFeature } from '@solana/wallet-standard-features';
-import {
-  createMockWallet,
-  createMockWalletAccount,
-  createMockUiWallet,
-} from './helpers';
+import { createMockWallet, createMockWalletAccount, createMockUiWallet } from './helpers';
 
 // Mock @solana/kit
 vi.mock('@solana/kit', () => ({
@@ -20,8 +16,7 @@ const mockGetWalletFeature = vi.fn();
 vi.mock('@wallet-standard/ui-features', () => ({
   getWalletAccountFeature: (account: unknown, feature: unknown) =>
     mockGetWalletAccountFeature(account, feature),
-  getWalletFeature: (wallet: unknown, feature: unknown) =>
-    mockGetWalletFeature(wallet, feature),
+  getWalletFeature: (wallet: unknown, feature: unknown) => mockGetWalletFeature(wallet, feature),
 }));
 
 const mockGetWalletAccountForUiWalletAccount = vi.fn();
@@ -203,4 +198,3 @@ describe('useSignIn', () => {
     });
   });
 });
-

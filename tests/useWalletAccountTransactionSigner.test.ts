@@ -55,15 +55,17 @@ describe('useWalletAccountTransactionSigner', () => {
 
     // Mock the sign transaction feature
     const mockSignFeature: SolanaSignTransactionFeature[typeof SolanaSignTransaction] = {
-      signTransaction: vi.fn().mockImplementation(async (input: { account: any; transaction: Uint8Array }) => {
-        // Return the transaction as-is (not modified) and a signature
-        return [
-          {
-            signedTransaction: input.transaction, // Return the same transaction
-            signatureType: 'ed25519',
-          },
-        ];
-      }),
+      signTransaction: vi
+        .fn()
+        .mockImplementation(async (input: { account: any; transaction: Uint8Array }) => {
+          // Return the transaction as-is (not modified) and a signature
+          return [
+            {
+              signedTransaction: input.transaction, // Return the same transaction
+              signatureType: 'ed25519',
+            },
+          ];
+        }),
     } as unknown as SolanaSignTransactionFeature[typeof SolanaSignTransaction];
 
     mockGetWalletAccountFeature.mockReturnValue(mockSignFeature);
@@ -147,4 +149,3 @@ describe('useWalletAccountTransactionSigner', () => {
     expect(signer.value).toBeDefined();
   });
 });
-

@@ -1,11 +1,12 @@
 import { computed } from 'vue';
 import type { UiWallet } from '@wallet-standard/ui-core';
+import { isSolanaChain } from '@solana/wallet-standard-chains';
 import { useWallets } from '@laurensv/wallet-standard-vue';
 import type { UseWalletsReturn } from '@laurensv/wallet-standard-vue';
 
 /**
  * Convenience composable that filters wallets to only show Solana-compatible wallets.
- * This is a wrapper around `useWallets()` that filters for wallets supporting `solana:*` chains.
+ * This is a wrapper around `useWallets()` that filters for wallets supporting Solana chains.
  *
  * @returns Filtered wallets that support Solana chains
  *
@@ -25,7 +26,7 @@ export function useSolanaWallets(): UseWalletsReturn {
   // Filter for Solana wallets
   const solanaWallets = computed(() => {
     return wallets.value.filter((wallet: UiWallet) =>
-      wallet.chains?.some((chain) => chain.startsWith('solana:'))
+      wallet.chains?.some((chain) => isSolanaChain(chain))
     );
   });
 

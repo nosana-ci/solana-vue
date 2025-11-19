@@ -1,7 +1,8 @@
 // Mock module for @solana/kit
 export const address = (addr: string) => addr;
 export class SolanaError extends Error {}
-export const SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED = 'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED';
+export const SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED =
+  'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED';
 
 // Export types that might be needed
 export type Address<T extends string = string> = T;
@@ -43,4 +44,3 @@ export const assertIsTransactionWithinSizeLimit = (tx: any) => {};
 export const getTransactionLifetimeConstraintFromCompiledTransactionMessage = async (msg: any) => ({
   blockhash: 'mock-blockhash',
 });
-

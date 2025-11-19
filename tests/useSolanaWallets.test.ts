@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ref } from 'vue';
+import { SOLANA_CHAINS } from '@solana/wallet-standard-chains';
 import { createMockWallet, createMockUiWallet } from './helpers';
 import type { UiWallet } from '@wallet-standard/ui-core';
 
@@ -27,7 +28,7 @@ describe('useSolanaWallets', () => {
     const solanaWallet = createMockUiWallet(
       createMockWallet({
         name: 'Solana Wallet',
-        chains: ['solana:mainnet'],
+        chains: [SOLANA_CHAINS[0]], // Use first Solana chain
       }),
       []
     );
@@ -46,43 +47,30 @@ describe('useSolanaWallets', () => {
     expect(wallets.value[0].name).toBe('Solana Wallet');
   });
 
-  it('should include wallets with solana:devnet chain', () => {
-    const devnetWallet = createMockUiWallet(
-      createMockWallet({
-        name: 'Devnet Wallet',
-        chains: ['solana:devnet'],
-      }),
-      []
-    );
+  it('should include wallets with all Solana chains', () => {
+    // Test that all Solana chains are recognized
+    SOLANA_CHAINS.forEach((chain) => {
+      const wallet = createMockUiWallet(
+        createMockWallet({
+          name: `Wallet for ${chain}`,
+          chains: [chain],
+        }),
+        []
+      );
 
-    mockWallets.value = [devnetWallet];
+      mockWallets.value = [wallet];
 
-    const { wallets } = useSolanaWallets();
-    expect(wallets.value).toHaveLength(1);
-    expect(wallets.value[0].name).toBe('Devnet Wallet');
-  });
-
-  it('should include wallets with solana:testnet chain', () => {
-    const testnetWallet = createMockUiWallet(
-      createMockWallet({
-        name: 'Testnet Wallet',
-        chains: ['solana:testnet'],
-      }),
-      []
-    );
-
-    mockWallets.value = [testnetWallet];
-
-    const { wallets } = useSolanaWallets();
-    expect(wallets.value).toHaveLength(1);
-    expect(wallets.value[0].name).toBe('Testnet Wallet');
+      const { wallets } = useSolanaWallets();
+      expect(wallets.value).toHaveLength(1);
+      expect(wallets.value[0].chains).toContain(chain);
+    });
   });
 
   it('should include wallets with multiple chains if one is Solana', () => {
     const multiChainWallet = createMockUiWallet(
       createMockWallet({
         name: 'Multi-Chain Wallet',
-        chains: ['solana:mainnet', 'eip155:1'],
+        chains: [SOLANA_CHAINS[0], 'eip155:1'],
       }),
       []
     );
@@ -101,7 +89,7 @@ describe('useSolanaWallets', () => {
     const solanaWallet = createMockUiWallet(
       createMockWallet({
         name: 'New Solana Wallet',
-        chains: ['solana:mainnet'],
+        chains: [SOLANA_CHAINS[0]],
       }),
       []
     );
@@ -115,14 +103,14 @@ describe('useSolanaWallets', () => {
     const wallet1 = createMockUiWallet(
       createMockWallet({
         name: 'Phantom',
-        chains: ['solana:mainnet'],
+        chains: [SOLANA_CHAINS[0]],
       }),
       []
     );
     const wallet2 = createMockUiWallet(
       createMockWallet({
         name: 'Solflare',
-        chains: ['solana:mainnet'],
+        chains: [SOLANA_CHAINS[0]],
       }),
       []
     );
@@ -154,7 +142,7 @@ describe('useSolanaWallets', () => {
     const solanaWallet = createMockUiWallet(
       createMockWallet({
         name: 'Solana Wallet',
-        chains: ['solana:mainnet'],
+        chains: [SOLANA_CHAINS[0]],
       }),
       []
     );

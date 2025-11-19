@@ -7,16 +7,14 @@ import {
   WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED,
   WalletStandardError,
 } from '@wallet-standard/errors';
-import {
-  createMockWalletAccount,
-  createMockUiWallet,
-} from './helpers';
+import { createMockWalletAccount, createMockUiWallet } from './helpers';
 
 // Mock @solana/kit
 vi.mock('@solana/kit', () => ({
   address: (addr: string) => addr,
   SolanaError: class extends Error {},
-  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED: 'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
+  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED:
+    'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
 }));
 
 // Mock @solana/promises
@@ -233,4 +231,3 @@ describe('useSignAndSendTransaction', () => {
     });
   });
 });
-

@@ -8,7 +8,8 @@ import type { SolanaSignMessageFeature } from '@solana/wallet-standard-features'
 vi.mock('@solana/kit', () => ({
   address: (addr: string) => addr,
   SolanaError: class extends Error {},
-  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED: 'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
+  SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED:
+    'SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED',
 }));
 
 // Mock @solana/promises
@@ -66,16 +67,18 @@ describe('useWalletAccountMessageSigner', () => {
 
     // Mock the sign message feature
     const mockSignFeature: SolanaSignMessageFeature[typeof SolanaSignMessage] = {
-      signMessage: vi.fn().mockImplementation(async (input: { account: any; message: Uint8Array }) => {
-        // Return the message as-is (not modified) and a signature
-        return [
-          {
-            signedMessage: input.message, // Return the same message
-            signature: new Uint8Array([1, 2, 3, 4, 5]),
-            signatureType: 'ed25519',
-          },
-        ];
-      }),
+      signMessage: vi
+        .fn()
+        .mockImplementation(async (input: { account: any; message: Uint8Array }) => {
+          // Return the message as-is (not modified) and a signature
+          return [
+            {
+              signedMessage: input.message, // Return the same message
+              signature: new Uint8Array([1, 2, 3, 4, 5]),
+              signatureType: 'ed25519',
+            },
+          ];
+        }),
     } as unknown as SolanaSignMessageFeature[typeof SolanaSignMessage];
 
     mockGetWalletAccountFeature.mockReturnValue(mockSignFeature);
@@ -88,7 +91,6 @@ describe('useWalletAccountMessageSigner', () => {
 
     expect(signer.value).toBeNull();
   });
-
 
   it('should return signer when account is provided', () => {
     const signer = useWalletAccountMessageSigner(mockUiAccount);
@@ -152,7 +154,7 @@ describe('useWalletAccountMessageSigner', () => {
         },
       ]),
     } as unknown as SolanaSignMessageFeature[typeof SolanaSignMessage];
-    
+
     // Override the signMessage to return modified message
     (mockSignFeatureModified.signMessage as any).mockImplementation(
       async (input: { account: any; message: Uint8Array }) => {
@@ -164,15 +166,14 @@ describe('useWalletAccountMessageSigner', () => {
         ];
       }
     );
-    
+
     mockGetWalletAccountFeature.mockReturnValue(mockSignFeatureModified);
 
     const signer = useWalletAccountMessageSigner(mockUiAccount);
     const message = new Uint8Array([72, 101, 108, 108, 111]);
 
-    // Since we can't easily mock the signedMessage to be different, 
+    // Since we can't easily mock the signedMessage to be different,
     // let's just verify the signer works with the feature
     expect(signer.value).toBeDefined();
   });
 });
-
