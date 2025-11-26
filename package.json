@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsc && npm run copy:assets",
     "copy:assets": "npm run copy:css && npm run copy:vue",
-    "copy:css": "mkdir -p dist/styles && cp ../wallet-standard-vue/dist/styles/*.css dist/styles/",
+    "copy:css": "mkdir -p dist/styles && cp node_modules/@nosana/wallet-standard-vue/dist/styles/*.css dist/styles/",
     "copy:vue": "mkdir -p dist/components && cp src/components/*.vue dist/components/",
     "dev": "tsc --watch",
     "test": "vitest run",
@@ -37,7 +37,7 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "@nosana/wallet-standard-vue": "file:../wallet-standard-vue",
+    "@nosana/wallet-standard-vue": "^1.0.0",
     "@solana/kit": "^5.0.0",
     "@solana/promises": "^5.0.0",
     "@solana/wallet-standard-chains": "^1.0.0",

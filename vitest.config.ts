@@ -16,7 +16,6 @@ export default defineConfig({
     alias: {
       '@': './src',
       '@nosana/solana-vue': path.resolve(__dirname, './src'),
-      '@nosana/wallet-standard-vue': path.resolve(__dirname, '../wallet-standard-vue/src'),
       // Mock @solana/kit and @solana/promises for tests
       '@solana/kit': path.resolve(__dirname, './tests/mocks/@solana/kit.ts'),
       '@solana/promises': path.resolve(__dirname, './tests/mocks/@solana/promises.ts'),
