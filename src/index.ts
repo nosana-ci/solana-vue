@@ -15,6 +15,7 @@ export { useSolanaWallets } from './composables/useSolanaWallets';
 export { useWalletAccountMessageSigner } from './composables/useWalletAccountMessageSigner';
 export { useWalletAccountTransactionSigner } from './composables/useWalletAccountTransactionSigner';
 export { useWalletAccountTransactionSendingSigner } from './composables/useWalletAccountTransactionSendingSigner';
+export { useWalletAccountSigner } from './composables/useWalletAccountSigner';
 
 // Export Solana-specific types
 export type { OnlySolanaChains } from './composables/chain';

@@ -113,6 +113,7 @@ Essential generic functionality needed for Solana apps:
 - `useWalletAccountMessageSigner()` - Create a message signer
 - `useWalletAccountTransactionSigner()` - Create a transaction signer (non-sending)
 - `useWalletAccountTransactionSendingSigner()` - Create a transaction signer (sending)
+- `useWalletAccountSigner()` - **Recommended** - Create a Wallet signer that combines both TransactionSendingSigner and MessageModifyingSigner (as recommended by @solana/kit)
 
 ### Solana-Specific Components (Recommended for Solana Apps)
 
