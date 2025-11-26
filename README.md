@@ -56,23 +56,24 @@ These variables are shared across all components and can be overridden globally:
   /* Primary Colors */
   --wallet-primary: #3b82f6;
   --wallet-primary-hover: #2563eb;
-  
+
   /* Text Colors */
   --wallet-text-primary: #111827;
   --wallet-text-secondary: #6b7280;
-  
+
   /* Border Colors */
   --wallet-border: #e5e7eb;
   --wallet-border-hover: #d1d5db;
-  
+
   /* Background Colors */
   --wallet-bg: white;
   --wallet-bg-gray: #f3f4f6;
   --wallet-bg-hover: #f9fafb;
   --wallet-bg-accent: #eff6ff;
-  
+
   /* Typography */
-  --wallet-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --wallet-font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 ```
 
@@ -89,17 +90,17 @@ These variables are shared across all components and can be overridden globally:
   --wallet-button-disconnect-text: var(--wallet-text-primary);
   --wallet-button-disconnect-border: var(--wallet-border);
   --wallet-button-disconnect-border-hover: var(--wallet-border-hover);
-  
+
   /* Text Colors */
   --wallet-button-text-secondary: var(--wallet-text-secondary);
-  
+
   /* Icon & Placeholder */
   --wallet-button-icon-placeholder-bg: var(--wallet-bg-gray);
   --wallet-button-icon-placeholder-text: var(--wallet-text-secondary);
-  
+
   /* Spinner */
   --wallet-button-spinner-color: var(--wallet-button-connect-bg);
-  
+
   /* Typography - can override shared variable */
   --wallet-button-font-family: var(--wallet-font-family);
 }
@@ -111,41 +112,41 @@ These variables are shared across all components and can be overridden globally:
 :root {
   /* Modal Overlay */
   --wallet-modal-overlay-bg: rgba(0, 0, 0, 0.5);
-  
+
   /* Modal Container */
   --wallet-modal-bg: var(--wallet-bg);
   --wallet-modal-border-radius: 12px;
   --wallet-modal-max-width: 400px;
-  
+
   /* Modal Header */
   --wallet-modal-header-border: var(--wallet-border);
   --wallet-modal-title-color: var(--wallet-text-primary);
-  
+
   /* Modal Close Button */
   --wallet-modal-close-color: var(--wallet-text-secondary);
   --wallet-modal-close-bg-hover: var(--wallet-bg-gray);
   --wallet-modal-close-border-radius: 0.375rem;
-  
+
   /* Modal Content */
   --wallet-modal-empty-text: var(--wallet-text-secondary);
-  
+
   /* Wallet Item */
   --wallet-item-bg: var(--wallet-bg);
   --wallet-item-border: var(--wallet-border);
   --wallet-item-border-hover: var(--wallet-primary);
   --wallet-item-bg-hover: var(--wallet-bg-accent);
   --wallet-item-border-radius: 0.5rem;
-  
+
   /* Wallet Item Icon */
   --wallet-item-icon-bg: var(--wallet-bg-gray);
   --wallet-item-icon-placeholder-text: var(--wallet-text-secondary);
-  
+
   /* Wallet Item Text */
   --wallet-item-name-color: var(--wallet-text-primary);
-  
+
   /* Wallet Item Spinner */
   --wallet-item-spinner-color: var(--wallet-primary);
-  
+
   /* Typography - can override shared variable */
   --wallet-modal-font-family: var(--wallet-font-family);
 }
@@ -159,7 +160,7 @@ These variables are shared across all components and can be overridden globally:
   /* Change the primary color globally */
   --wallet-primary: #8b5cf6;
   --wallet-primary-hover: #7c3aed;
-  
+
   /* Or override specific button colors */
   --wallet-button-connect-bg: #10b981;
   --wallet-button-connect-bg-hover: #059669;
@@ -184,12 +185,12 @@ These variables are shared across all components and can be overridden globally:
 // Import Solana-specific features from solana-vue
 // WalletProvider and useWallet are re-exported (they're generic but needed)
 // Use Solana-specific components and composables (recommended)
-import { 
+import {
   WalletProvider,
-  SolanaWalletButton,  // Shows only Solana wallets
+  SolanaWalletButton, // Shows only Solana wallets
   useWallet,
-  useSolanaWallets,    // Returns only Solana wallets
-  useSignAndSendTransaction 
+  useSolanaWallets, // Returns only Solana wallets
+  useSignAndSendTransaction,
 } from '@nosana/solana-vue';
 // Don't forget to import the styles if you want the default styling
 import '@nosana/solana-vue/styles';

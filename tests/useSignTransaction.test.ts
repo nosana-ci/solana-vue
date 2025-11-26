@@ -3,10 +3,7 @@ import { ref } from 'vue';
 import { useSignTransaction } from '../src/composables/useSignTransaction';
 import { SolanaSignTransaction } from '@solana/wallet-standard-features';
 import type { SolanaSignTransactionFeature } from '@solana/wallet-standard-features';
-import {
-  WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED,
-  WalletStandardError,
-} from '@wallet-standard/errors';
+import { WalletStandardError } from '@wallet-standard/errors';
 import { createMockWalletAccount, createMockUiWallet } from './helpers';
 
 // Mock @solana/kit

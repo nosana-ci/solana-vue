@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { SOLANA_CHAINS } from '@solana/wallet-standard-chains';
 import { createMockWallet, createMockUiWallet } from './helpers';
 import type { UiWallet } from '@wallet-standard/ui-core';
 
 // Mock useWallets directly since useSolanaWallets is just a filter wrapper
 const mockWallets = ref<UiWallet[]>([]);
-vi.mock('@laurensv/wallet-standard-vue', () => ({
+vi.mock('@nosana/wallet-standard-vue', () => ({
   useWallets: () => ({
-    wallets: mockWallets,
+    wallets: computed(() => mockWallets.value),
   }),
 }));
 

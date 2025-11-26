@@ -144,7 +144,7 @@ describe('useWalletAccountMessageSigner', () => {
   });
 
   it('should handle modified message', async () => {
-    const modifiedMessage = new Uint8Array([87, 111, 114, 108, 100]); // "World"
+    const _modifiedMessage = new Uint8Array([87, 111, 114, 108, 100]); // "World"
     // Mock signMessage to return a different message
     const mockSignFeatureModified: SolanaSignMessageFeature[typeof SolanaSignMessage] = {
       signMessage: vi.fn().mockResolvedValue([
@@ -170,7 +170,7 @@ describe('useWalletAccountMessageSigner', () => {
     mockGetWalletAccountFeature.mockReturnValue(mockSignFeatureModified);
 
     const signer = useWalletAccountMessageSigner(mockUiAccount);
-    const message = new Uint8Array([72, 101, 108, 108, 111]);
+    const _message = new Uint8Array([72, 101, 108, 108, 111]);
 
     // Since we can't easily mock the signedMessage to be different,
     // let's just verify the signer works with the feature

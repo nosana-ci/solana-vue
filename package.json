@@ -1,6 +1,6 @@
 {
   "name": "@nosana/solana-vue",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Vue composables for Solana wallet-standard",
   "type": "module",
   "main": "./dist/index.js",
@@ -30,7 +30,8 @@
     "lint": "eslint . --ext .ts,.vue",
     "lint:fix": "eslint . --ext .ts,.vue --fix",
     "format": "prettier --check \"**/*.{ts,vue,json,md}\"",
-    "format:fix": "prettier --write \"**/*.{ts,vue,json,md}\""
+    "format:fix": "prettier --write \"**/*.{ts,vue,json,md}\"",
+    "publish:public": "npm publish --access public"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

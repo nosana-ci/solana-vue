@@ -8,10 +8,10 @@ export const SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED =
 export type Address<T extends string = string> = T;
 export type SignatureBytes = Uint8Array;
 export type ReadonlyUint8Array = Readonly<Uint8Array>;
-export type MessageModifyingSigner<TAddress extends string = string> = any;
+export type MessageModifyingSigner<_TAddress extends string = string> = any;
 export type SignableMessage = any;
-export type TransactionModifyingSigner<TAddress extends string = string> = any;
-export type TransactionSendingSigner<TAddress extends string = string> = any;
+export type TransactionModifyingSigner<_TAddress extends string = string> = any;
+export type TransactionSendingSigner<_TAddress extends string = string> = any;
 export type Transaction = any;
 export type TransactionWithinSizeLimit = any;
 export type TransactionWithLifetime = any;

@@ -110,10 +110,10 @@ export function useSignAndSendTransaction<TWalletAccount extends UiWalletAccount
         chain: chainId,
         ...(minContextSlot != null
           ? {
-            options: {
-              minContextSlot: Number(minContextSlot),
-            },
-          }
+              options: {
+                minContextSlot: Number(minContextSlot),
+              },
+            }
           : null),
       };
 
