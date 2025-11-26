@@ -76,6 +76,28 @@ const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet
 </script>
 ```
 
+**WalletProvider Props:**
+
+- `autoConnect` (optional, default: `false`): Automatically reconnect to the last connected wallet when the app loads. The wallet name is stored in localStorage and will be automatically reconnected on subsequent visits.
+
+- `localStorageKey` (optional, default: `'walletName'`): The key used to store the last connected wallet name in localStorage. Useful if you want to use a custom key or have multiple instances.
+
+**Example - With auto-connect enabled:**
+
+```vue
+<template>
+  <WalletProvider :auto-connect="true">
+    <SolanaWalletButton />
+    <!-- Your app content -->
+  </WalletProvider>
+</template>
+
+<script setup lang="ts">
+import { WalletProvider, SolanaWalletButton, useWallet } from '@nosana/solana-vue';
+import '@nosana/solana-vue/styles';
+</script>
+```
+
 ### For Multi-Chain Apps
 
 If you're building a multi-chain app, import the generic functionality from `@nosana/wallet-standard-vue`:
