@@ -1,20 +1,20 @@
-# @laurensv/solana-vue
+# @nosana/solana-vue
 
-Vue composables and components for Solana wallet-standard, built on top of `@laurensv/wallet-standard-vue`.
+Vue composables and components for Solana wallet-standard, built on top of `@nosana/wallet-standard-vue`.
 
 ## Installation
 
 ```bash
-npm install @laurensv/solana-vue
+npm install @nosana/solana-vue
 ```
 
-**Note:** This package depends on `@laurensv/wallet-standard-vue` and re-exports essential generic functionality (`WalletProvider`, `useWallet`) plus Solana-specific features. For generic components like `WalletButton` or `useWallets`, import directly from `@laurensv/wallet-standard-vue`.
+**Note:** This package depends on `@nosana/wallet-standard-vue` and re-exports essential generic functionality (`WalletProvider`, `useWallet`) plus Solana-specific features. For generic components like `WalletButton` or `useWallets`, import directly from `@nosana/wallet-standard-vue`.
 
 ## Usage
 
 ### For Solana Apps (Recommended)
 
-**Import Solana-specific features from `@laurensv/solana-vue`** - it re-exports essential generic functionality (`WalletProvider`, `useWallet`) plus Solana-specific features:
+**Import Solana-specific features from `@nosana/solana-vue`** - it re-exports essential generic functionality (`WalletProvider`, `useWallet`) plus Solana-specific features:
 
 ```vue
 <template>
@@ -34,7 +34,7 @@ import {
   useWallet,
   useSolanaWallets,    // Returns only Solana wallets
   useSignAndSendTransaction 
-} from '@laurensv/solana-vue';
+} from '@nosana/solana-vue';
 
 const { account } = useWallet();
 const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet');
@@ -43,18 +43,18 @@ const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet
 
 ### For Multi-Chain Apps
 
-If you're building a multi-chain app, import the generic functionality from `@laurensv/wallet-standard-vue`:
+If you're building a multi-chain app, import the generic functionality from `@nosana/wallet-standard-vue`:
 
 ```vue
 <script setup lang="ts">
-import { WalletProvider, useWallet, WalletButton, useWallets } from '@laurensv/wallet-standard-vue';
-import { useSignAndSendTransaction } from '@laurensv/solana-vue';
+import { WalletProvider, useWallet, WalletButton, useWallets } from '@nosana/wallet-standard-vue';
+import { useSignAndSendTransaction } from '@nosana/solana-vue';
 </script>
 ```
 
 ## API
 
-### Re-exported from `@laurensv/wallet-standard-vue`
+### Re-exported from `@nosana/wallet-standard-vue`
 
 Essential generic functionality needed for Solana apps:
 
@@ -62,7 +62,7 @@ Essential generic functionality needed for Solana apps:
 - `useWallet()` - Wallet connection state management (generic, works for any chain)
 - `WALLET_CONTEXT_KEY` - Context key for advanced usage
 
-**Note:** For generic components (`WalletButton`, `WalletModal`, `useWallets`), import directly from `@laurensv/wallet-standard-vue` if you need them. For Solana apps, use the Solana-specific versions below.
+**Note:** For generic components (`WalletButton`, `WalletModal`, `useWallets`), import directly from `@nosana/wallet-standard-vue` if you need them. For Solana apps, use the Solana-specific versions below.
 
 ### Solana-Specific Composables (Recommended for Solana Apps)
 

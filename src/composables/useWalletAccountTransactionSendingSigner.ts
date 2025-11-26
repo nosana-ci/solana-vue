@@ -24,8 +24,8 @@ import type { UiWalletAccount } from '@wallet-standard/ui-core';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountTransactionSendingSigner } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useWalletAccountTransactionSendingSigner } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  * import {
  *   pipe,
  *   createTransactionMessage,
