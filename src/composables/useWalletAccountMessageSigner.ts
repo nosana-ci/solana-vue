@@ -21,8 +21,8 @@ import { useSignMessage } from './useSignMessage';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountMessageSigner } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useWalletAccountMessageSigner } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  * import { createSignableMessage } from '@solana/kit';
  *
  * const { account } = useWallet();

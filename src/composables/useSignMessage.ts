@@ -22,8 +22,8 @@ type Output = Omit<SolanaSignMessageOutput, 'signatureType'>;
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useSignMessage } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useSignMessage } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  *
  * const { account } = useWallet();
  * const signMessage = useSignMessage(account);

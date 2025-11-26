@@ -36,8 +36,8 @@ type Output = SolanaSignAndSendTransactionOutput;
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useSignAndSendTransaction } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useSignAndSendTransaction } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  *
  * const { account } = useWallet();
  * const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet');

@@ -30,8 +30,8 @@ type Output = Omit<SolanaSignInOutput, 'account' | 'signatureType'> &
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useSignIn } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useSignIn } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  *
  * const { wallet } = useWallet();
  * const signIn = useSignIn(wallet);

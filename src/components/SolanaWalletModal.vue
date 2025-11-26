@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { WalletModal } from '@laurensv/wallet-standard-vue';
+import { WalletModal } from '@nosana/wallet-standard-vue';
 import { useSolanaWallets } from '../composables/useSolanaWallets';
 
 interface Props {

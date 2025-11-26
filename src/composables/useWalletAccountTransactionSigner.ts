@@ -33,8 +33,8 @@ import { useSignTransaction } from './useSignTransaction';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountTransactionSigner } from '@laurensv/solana-vue';
- * import { useWallet } from '@laurensv/solana-vue';
+ * import { useWalletAccountTransactionSigner } from '@nosana/solana-vue';
+ * import { useWallet } from '@nosana/solana-vue';
  *
  * const { account } = useWallet();
  * const transactionSigner = useWalletAccountTransactionSigner(account, 'solana:devnet');
