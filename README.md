@@ -10,6 +10,39 @@ npm install @nosana/solana-vue
 
 **Note:** This package depends on `@nosana/wallet-standard-vue` and re-exports essential generic functionality (`WalletProvider`, `useWallet`) plus Solana-specific features. For generic components like `WalletButton` or `useWallets`, import directly from `@nosana/wallet-standard-vue`.
 
+## Styling
+
+The UI components (`SolanaWalletButton` and `SolanaWalletModal`) come with default styles that you can optionally import. If you prefer to style them yourself, you can skip importing the CSS.
+
+### Import all styles
+
+```javascript
+import '@nosana/solana-vue/styles';
+```
+
+### Import individual component styles
+
+```javascript
+// Import only WalletButton styles
+import '@nosana/solana-vue/styles/wallet-button';
+
+// Import only WalletModal styles
+import '@nosana/solana-vue/styles/wallet-modal';
+```
+
+### In your main entry file
+
+```javascript
+// main.js or main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
+import '@nosana/solana-vue/styles'; // Add this line
+
+createApp(App).mount('#app');
+```
+
+**Note:** The styles are the same as `@nosana/wallet-standard-vue/styles` - you can import from either package.
+
 ## Usage
 
 ### For Solana Apps (Recommended)
@@ -35,6 +68,8 @@ import {
   useSolanaWallets,    // Returns only Solana wallets
   useSignAndSendTransaction 
 } from '@nosana/solana-vue';
+// Don't forget to import the styles if you want the default styling
+import '@nosana/solana-vue/styles';
 
 const { account } = useWallet();
 const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet');

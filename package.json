@@ -10,13 +10,19 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./styles": "./dist/styles/index.css",
+    "./styles/wallet-button": "./dist/styles/wallet-button.css",
+    "./styles/wallet-modal": "./dist/styles/wallet-modal.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy:assets",
+    "copy:assets": "npm run copy:css && npm run copy:vue",
+    "copy:css": "mkdir -p dist/styles && cp ../wallet-standard-vue/dist/styles/*.css dist/styles/",
+    "copy:vue": "mkdir -p dist/components && cp src/components/*.vue dist/components/",
     "dev": "tsc --watch",
     "test": "vitest run",
     "test:watch": "vitest",
