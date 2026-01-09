@@ -117,4 +117,3 @@ export function useWalletAccountMessageModifyingSigner<TWalletAccount extends Ui
     };
   });
 }
-

@@ -112,10 +112,10 @@ export function useWalletAccountTransactionSendingSigner<TWalletAccount extends 
           transaction: wireTransactionBytes as Uint8Array,
           ...(options.minContextSlot != null
             ? {
-              options: {
-                minContextSlot: Number(options.minContextSlot),
-              },
-            }
+                options: {
+                  minContextSlot: Number(options.minContextSlot),
+                },
+              }
             : null),
         };
 

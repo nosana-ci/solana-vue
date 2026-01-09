@@ -3,7 +3,7 @@ import type { SignatureDictionary } from '@solana/kit';
 import { address } from '@solana/kit';
 import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/kit';
 import { getAbortablePromise } from '@solana/promises';
-import type { MessagePartialSigner, SignableMessage } from '@solana/kit';
+import type { MessagePartialSigner } from '@solana/kit';
 import type { UiWalletAccount } from '@wallet-standard/ui-core';
 
 import { useSignMessage } from './useSignMessage';
@@ -101,4 +101,3 @@ export function useWalletAccountMessagePartialSigner<TWalletAccount extends UiWa
     };
   });
 }
-
