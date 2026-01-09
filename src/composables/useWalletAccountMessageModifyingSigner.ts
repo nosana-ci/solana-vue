@@ -9,7 +9,7 @@ import type { UiWalletAccount } from '@wallet-standard/ui-core';
 import { useSignMessage } from './useSignMessage';
 
 /**
- * Use this to get a {@link MessageSigner} capable of signing messages with the private key of a
+ * Use this to get a {@link MessageModifyingSigner} capable of signing messages with the private key of a
  * {@link UiWalletAccount}
  *
  * @param uiWalletAccount The UI wallet account to sign with
@@ -21,12 +21,12 @@ import { useSignMessage } from './useSignMessage';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountMessageSigner } from '@nosana/solana-vue';
+ * import { useWalletAccountMessageModifyingSigner } from '@nosana/solana-vue';
  * import { useWallet } from '@nosana/solana-vue';
  * import { createSignableMessage } from '@solana/kit';
  *
  * const { account } = useWallet();
- * const messageSigner = useWalletAccountMessageSigner(account);
+ * const messageSigner = useWalletAccountMessageModifyingSigner(account);
  *
  * const handleSign = async () => {
  *   if (!account.value || !messageSigner.value) return;
@@ -43,7 +43,7 @@ import { useSignMessage } from './useSignMessage';
  * </script>
  * ```
  */
-export function useWalletAccountMessageSigner<TWalletAccount extends UiWalletAccount>(
+export function useWalletAccountMessageModifyingSigner<TWalletAccount extends UiWalletAccount>(
   uiWalletAccount: Ref<TWalletAccount | null> | TWalletAccount | null
 ): Ref<MessageModifyingSigner<TWalletAccount['address']> | null> {
   // Normalize account to a ref
@@ -117,3 +117,4 @@ export function useWalletAccountMessageSigner<TWalletAccount extends UiWalletAcc
     };
   });
 }
+

@@ -2,7 +2,8 @@ import { computed, type Ref } from 'vue';
 import type { TransactionSendingSigner, MessageModifyingSigner, Address } from '@solana/kit';
 import type { UiWalletAccount } from '@wallet-standard/ui-core';
 import { useWalletAccountTransactionSendingSigner } from './useWalletAccountTransactionSendingSigner';
-import { useWalletAccountMessageSigner } from './useWalletAccountMessageSigner';
+import { useWalletAccountMessageModifyingSigner } from './useWalletAccountMessageModifyingSigner';
+import { OnlySolanaChains } from './chain';
 
 /**
  * Creates a Wallet signer that combines both TransactionSendingSigner and MessageModifyingSigner.
@@ -17,24 +18,24 @@ import { useWalletAccountMessageSigner } from './useWalletAccountMessageSigner';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountSigner } from '@nosana/solana-vue';
+ * import { useWalletAccountSendingSigner } from '@nosana/solana-vue';
  * import { useWallet } from '@nosana/solana-vue';
  * import type { Wallet } from '@solana/kit';
  *
  * const { account } = useWallet();
- * const wallet = useWalletAccountSigner(account, 'solana:devnet');
+ * const wallet = useWalletAccountSendingSigner(account, 'solana:devnet');
  *
  * // wallet.value is now a Wallet (TransactionSendingSigner & MessageModifyingSigner)
  * // You can use it for both transactions and messages
  * </script>
  * ```
  */
-export function useWalletAccountSigner(
-  account: Ref<UiWalletAccount | null> | UiWalletAccount | null,
-  chain: Ref<string> | string = 'solana:devnet'
+export function useWalletAccountSendingSigner<TWalletAccount extends UiWalletAccount>(
+  account: Ref<TWalletAccount | null> | TWalletAccount | null,
+  chain: OnlySolanaChains<TWalletAccount['chains']> | `solana:${string}` = 'solana:devnet'
 ): Ref<(TransactionSendingSigner & MessageModifyingSigner<Address<string>>) | null> {
   const transactionSigner = useWalletAccountTransactionSendingSigner(account, chain);
-  const messageSigner = useWalletAccountMessageSigner(account);
+  const messageSigner = useWalletAccountMessageModifyingSigner(account);
 
   return computed(() => {
     const txSigner = transactionSigner.value;

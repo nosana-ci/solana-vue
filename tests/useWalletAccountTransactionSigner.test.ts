@@ -25,9 +25,9 @@ vi.mock('@wallet-standard/ui-registry', () => ({
 }));
 
 // Import after all mocks are set up
-import { useWalletAccountTransactionSigner } from '../src/composables/useWalletAccountTransactionSigner';
+import { useWalletAccountTransactionModifyingSigner } from '../src/composables/useWalletAccountTransactionModifyingSigner';
 
-describe('useWalletAccountTransactionSigner', () => {
+describe('useWalletAccountTransactionModifyingSigner', () => {
   let mockAccount: ReturnType<typeof createMockWalletAccount>;
   let mockUiAccount: ReturnType<typeof createMockUiWallet>['accounts'][0];
 
@@ -74,13 +74,13 @@ describe('useWalletAccountTransactionSigner', () => {
 
   it('should return null when account is null', () => {
     const accountRef = ref(null);
-    const signer = useWalletAccountTransactionSigner(accountRef, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(accountRef, 'solana:devnet');
 
     expect(signer.value).toBeNull();
   });
 
   it('should return signer when account is provided', () => {
-    const signer = useWalletAccountTransactionSigner(mockUiAccount, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(mockUiAccount, 'solana:devnet');
 
     expect(signer.value).toBeDefined();
     expect(signer.value?.address).toBe('test-address-123');
@@ -88,7 +88,7 @@ describe('useWalletAccountTransactionSigner', () => {
   });
 
   it('should sign a single transaction', async () => {
-    const signer = useWalletAccountTransactionSigner(mockUiAccount, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(mockUiAccount, 'solana:devnet');
     const transaction = {
       messageBytes: new Uint8Array([1, 2, 3, 4, 5]),
     } as any;
@@ -100,7 +100,7 @@ describe('useWalletAccountTransactionSigner', () => {
   });
 
   it('should throw error for multiple transactions', async () => {
-    const signer = useWalletAccountTransactionSigner(mockUiAccount, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(mockUiAccount, 'solana:devnet');
     const transaction = {
       messageBytes: new Uint8Array([1, 2, 3]),
     } as any;
@@ -111,7 +111,7 @@ describe('useWalletAccountTransactionSigner', () => {
   });
 
   it('should return empty array for empty transactions', async () => {
-    const signer = useWalletAccountTransactionSigner(mockUiAccount, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(mockUiAccount, 'solana:devnet');
 
     const result = await signer.value!.modifyAndSignTransactions([]);
 
@@ -120,7 +120,7 @@ describe('useWalletAccountTransactionSigner', () => {
 
   it('should work with ref account', () => {
     const accountRef = ref(mockUiAccount);
-    const signer = useWalletAccountTransactionSigner(accountRef, 'solana:devnet');
+    const signer = useWalletAccountTransactionModifyingSigner(accountRef, 'solana:devnet');
 
     expect(signer.value).toBeDefined();
   });
@@ -144,7 +144,7 @@ describe('useWalletAccountTransactionSigner', () => {
       wallet: mainnetWallet,
     };
 
-    const signer = useWalletAccountTransactionSigner(mainnetUiAccount, 'solana:mainnet');
+    const signer = useWalletAccountTransactionModifyingSigner(mainnetUiAccount, 'solana:mainnet');
 
     expect(signer.value).toBeDefined();
   });

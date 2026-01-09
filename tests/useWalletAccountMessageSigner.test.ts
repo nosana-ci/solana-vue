@@ -38,9 +38,9 @@ vi.mock('@wallet-standard/ui-registry', () => ({
 }));
 
 // Import after all mocks are set up
-import { useWalletAccountMessageSigner } from '../src/composables/useWalletAccountMessageSigner';
+import { useWalletAccountMessageModifyingSigner } from '../src/composables/useWalletAccountMessageModifyingSigner';
 
-describe('useWalletAccountMessageSigner', () => {
+describe('useWalletAccountMessageModifyingSigner', () => {
   let mockAccount: ReturnType<typeof createMockWalletAccount>;
   let mockUiAccount: ReturnType<typeof createMockUiWallet>['accounts'][0];
 
@@ -87,13 +87,13 @@ describe('useWalletAccountMessageSigner', () => {
 
   it('should return null when account is null', () => {
     const accountRef = ref(null);
-    const signer = useWalletAccountMessageSigner(accountRef);
+    const signer = useWalletAccountMessageModifyingSigner(accountRef);
 
     expect(signer.value).toBeNull();
   });
 
   it('should return signer when account is provided', () => {
-    const signer = useWalletAccountMessageSigner(mockUiAccount);
+    const signer = useWalletAccountMessageModifyingSigner(mockUiAccount);
 
     expect(signer.value).toBeDefined();
     expect(signer.value?.address).toBe('test-address-123');
@@ -101,7 +101,7 @@ describe('useWalletAccountMessageSigner', () => {
   });
 
   it('should sign a single message', async () => {
-    const signer = useWalletAccountMessageSigner(mockUiAccount);
+    const signer = useWalletAccountMessageModifyingSigner(mockUiAccount);
     const message = new Uint8Array([72, 101, 108, 108, 111]); // "Hello"
 
     const result = await signer.value!.modifyAndSignMessages([
@@ -117,7 +117,7 @@ describe('useWalletAccountMessageSigner', () => {
   });
 
   it('should throw error for multiple messages', async () => {
-    const signer = useWalletAccountMessageSigner(mockUiAccount);
+    const signer = useWalletAccountMessageModifyingSigner(mockUiAccount);
     const message = new Uint8Array([72, 101, 108, 108, 111]);
 
     await expect(
@@ -129,7 +129,7 @@ describe('useWalletAccountMessageSigner', () => {
   });
 
   it('should return empty array for empty messages', async () => {
-    const signer = useWalletAccountMessageSigner(mockUiAccount);
+    const signer = useWalletAccountMessageModifyingSigner(mockUiAccount);
 
     const result = await signer.value!.modifyAndSignMessages([]);
 
@@ -138,7 +138,7 @@ describe('useWalletAccountMessageSigner', () => {
 
   it('should work with ref account', () => {
     const accountRef = ref(mockUiAccount);
-    const signer = useWalletAccountMessageSigner(accountRef);
+    const signer = useWalletAccountMessageModifyingSigner(accountRef);
 
     expect(signer.value).toBeDefined();
   });
@@ -169,7 +169,7 @@ describe('useWalletAccountMessageSigner', () => {
 
     mockGetWalletAccountFeature.mockReturnValue(mockSignFeatureModified);
 
-    const signer = useWalletAccountMessageSigner(mockUiAccount);
+    const signer = useWalletAccountMessageModifyingSigner(mockUiAccount);
     const _message = new Uint8Array([72, 101, 108, 108, 111]);
 
     // Since we can't easily mock the signedMessage to be different,

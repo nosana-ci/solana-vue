@@ -12,10 +12,14 @@ export { useSignMessage } from './composables/useSignMessage';
 export { useSignTransaction } from './composables/useSignTransaction';
 export { useSignAndSendTransaction } from './composables/useSignAndSendTransaction';
 export { useSolanaWallets } from './composables/useSolanaWallets';
-export { useWalletAccountMessageSigner } from './composables/useWalletAccountMessageSigner';
-export { useWalletAccountTransactionSigner } from './composables/useWalletAccountTransactionSigner';
+export { useWalletAccountMessageModifyingSigner } from './composables/useWalletAccountMessageModifyingSigner';
+export { useWalletAccountMessagePartialSigner } from './composables/useWalletAccountMessagePartialSigner';
+export { useWalletAccountTransactionModifyingSigner } from './composables/useWalletAccountTransactionModifyingSigner';
+export { useWalletAccountTransactionPartialSigner } from './composables/useWalletAccountTransactionPartialSigner';
 export { useWalletAccountTransactionSendingSigner } from './composables/useWalletAccountTransactionSendingSigner';
-export { useWalletAccountSigner } from './composables/useWalletAccountSigner';
+export { useWalletAccountSendingSigner } from './composables/useWalletAccountSendingSigner';
+export { useWalletAccountPartialSigner } from './composables/useWalletAccountPartialSigner';
+export { useWalletAccountModifyingSigner } from './composables/useWalletAccountModifyingSigner';
 
 // Export Solana-specific types
 export type { OnlySolanaChains } from './composables/chain';

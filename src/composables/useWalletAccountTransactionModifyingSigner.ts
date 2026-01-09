@@ -19,7 +19,7 @@ import { OnlySolanaChains } from './chain';
 import { useSignTransaction } from './useSignTransaction';
 
 /**
- * Use this to get a {@link TransactionSigner} capable of signing serialized transactions with the
+ * Use this to get a {@link TransactionModifyingSigner} capable of signing serialized transactions with the
  * private key of a {@link UiWalletAccount}
  *
  * @param uiWalletAccount The UI wallet account to sign with
@@ -33,11 +33,11 @@ import { useSignTransaction } from './useSignTransaction';
  * @example
  * ```vue
  * <script setup lang="ts">
- * import { useWalletAccountTransactionSigner } from '@nosana/solana-vue';
+ * import { useWalletAccountTransactionModifyingSigner } from '@nosana/solana-vue';
  * import { useWallet } from '@nosana/solana-vue';
  *
  * const { account } = useWallet();
- * const transactionSigner = useWalletAccountTransactionSigner(account, 'solana:devnet');
+ * const transactionSigner = useWalletAccountTransactionModifyingSigner(account, 'solana:devnet');
  *
  * const handleSign = async () => {
  *   if (!account.value || !transactionSigner.value) return;
@@ -53,7 +53,7 @@ import { useSignTransaction } from './useSignTransaction';
  * ```
  */
 
-export function useWalletAccountTransactionSigner<TWalletAccount extends UiWalletAccount>(
+export function useWalletAccountTransactionModifyingSigner<TWalletAccount extends UiWalletAccount>(
   uiWalletAccount: Ref<TWalletAccount | null> | TWalletAccount | null,
   chain: OnlySolanaChains<TWalletAccount['chains']> | `solana:${string}`
 ): Ref<TransactionModifyingSigner<TWalletAccount['address']> | null> {

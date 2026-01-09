@@ -1,26 +1,20 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import typescript2 from 'rollup-plugin-typescript2';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import dts from 'vite-plugin-dts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
     vue(),
-    typescript2({
-      check: false,
-      include: ['src/components/*.vue', 'src/components/**/*.vue', 'src/*.ts', 'src/**/*.ts'],
-      tsconfigOverride: {
-        compilerOptions: {
-          outDir: 'dist',
-          sourceMap: true,
-          declaration: true,
-          declarationMap: true,
-        },
-      },
-      exclude: ['vite.config.ts', 'vitest.config.ts'],
+    dts({
+      include: ['src/**/*.ts', 'src/**/*.vue'],
+      exclude: ['vite.config.ts', 'vitest.config.ts', 'tests/**'],
+      outDir: 'dist',
+      copyDtsFiles: true,
+      insertTypesEntry: true,
     }),
   ],
   build: {

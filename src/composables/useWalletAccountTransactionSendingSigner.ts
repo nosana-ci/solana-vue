@@ -9,6 +9,8 @@ import { getWalletAccountFeature } from '@wallet-standard/ui-features';
 import { getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from '@wallet-standard/ui-registry';
 import type { UiWalletAccount } from '@wallet-standard/ui-core';
 
+import { OnlySolanaChains } from './chain';
+
 /**
  * Creates a TransactionSendingSigner from a wallet account that can be used with
  * `setTransactionMessageFeePayerSigner` and `signAndSendTransactionMessageWithSigners`
@@ -18,7 +20,7 @@ import type { UiWalletAccount } from '@wallet-standard/ui-core';
  * `solana:signAndSendTransaction` feature.
  *
  * @param account - The UI wallet account to create a signer for (can be a ref or direct value)
- * @param chain - The chain identifier (e.g., 'solana:mainnet', 'solana:devnet') - can be a ref or direct value
+ * @param chain - The chain identifier (e.g., 'solana:mainnet', 'solana:devnet')
  * @returns A TransactionSendingSigner object or null if account is not available
  *
  * @example
@@ -50,18 +52,15 @@ import type { UiWalletAccount } from '@wallet-standard/ui-core';
  * </script>
  * ```
  */
-export function useWalletAccountTransactionSendingSigner(
-  account: Ref<UiWalletAccount | null> | UiWalletAccount | null,
-  chain: Ref<string> | string = 'solana:devnet'
+export function useWalletAccountTransactionSendingSigner<TWalletAccount extends UiWalletAccount>(
+  account: Ref<TWalletAccount | null> | TWalletAccount | null,
+  chain: OnlySolanaChains<TWalletAccount['chains']> | `solana:${string}` = 'solana:devnet'
 ): Ref<TransactionSendingSigner | null> {
   // Normalize account to a ref
-  const accountRef: Ref<UiWalletAccount | null> =
+  const accountRef: Ref<TWalletAccount | null> =
     typeof account === 'object' && account !== null && 'value' in account
-      ? (account as Ref<UiWalletAccount | null>)
-      : computed(() => account as UiWalletAccount | null);
-
-  // Normalize chain to a ref
-  const chainRef = typeof chain === 'string' ? computed(() => chain) : chain;
+      ? (account as Ref<TWalletAccount | null>)
+      : computed(() => account as TWalletAccount | null);
 
   // Store encoder ref (similar to React implementation)
   // Using a plain object since we're outside the computed
@@ -73,7 +72,7 @@ export function useWalletAccountTransactionSendingSigner(
       return null;
     }
 
-    const chainId = chainRef.value;
+    const chainId = chain;
 
     // Get the Solana sign and send transaction feature
     const signAndSendTransactionFeature = getWalletAccountFeature(
@@ -113,10 +112,10 @@ export function useWalletAccountTransactionSendingSigner(
           transaction: wireTransactionBytes as Uint8Array,
           ...(options.minContextSlot != null
             ? {
-                options: {
-                  minContextSlot: Number(options.minContextSlot),
-                },
-              }
+              options: {
+                minContextSlot: Number(options.minContextSlot),
+              },
+            }
             : null),
         };
 
