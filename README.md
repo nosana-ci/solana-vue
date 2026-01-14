@@ -106,6 +106,7 @@ Essential generic functionality needed for Solana apps:
 ### Solana-Specific Composables (Recommended for Solana Apps)
 
 - `useSolanaWallets()` - **Recommended** - Filtered list of Solana-compatible wallets (use instead of `useWallets()`)
+- `useMobileWalletAdapter()` - Register Solana Mobile Wallet Adapter for mobile wallet support
 - `useSignTransaction()` - Sign Solana transactions
 - `useSignAndSendTransaction()` - Sign and send Solana transactions
 - `useSignMessage()` - Sign messages
@@ -123,6 +124,43 @@ Essential generic functionality needed for Solana apps:
 
 - `SolanaWalletButton` - **Recommended** - Wallet button that only shows Solana-compatible wallets (use instead of `WalletButton`)
 - `SolanaWalletModal` - **Recommended** - Wallet modal that only shows Solana-compatible wallets (use instead of `WalletModal`)
+
+## Mobile Wallet Adapter
+
+The package includes built-in support for the [Solana Mobile Wallet Adapter](https://docs.solanamobile.com/mobile-wallet-adapter/web-installation). The `@solana-mobile/wallet-standard-mobile` package is included as a dependency, so you don't need to install it separately.
+
+To enable mobile wallet support, use the `useMobileWalletAdapter` composable in your app:
+
+```vue
+<script setup lang="ts">
+import { useMobileWalletAdapter, WalletProvider, SolanaWalletButton } from '@nosana/solana-vue';
+import type { AppIdentity } from '@nosana/solana-vue';
+
+// Register Mobile Wallet Adapter
+useMobileWalletAdapter({
+  appIdentity: {
+    name: 'My App',
+    uri: 'https://myapp.io',
+    icon: '/icon.png', // relative path resolves to https://myapp.io/icon.png
+  },
+  // Optional: customize chains (default: ['solana:devnet', 'solana:mainnet'])
+  chains: ['solana:devnet', 'solana:mainnet'],
+});
+</script>
+
+<template>
+  <WalletProvider>
+    <SolanaWalletButton />
+    <!-- Your app content -->
+  </WalletProvider>
+</template>
+```
+
+Once registered, the wallet behavior automatically adapts to the user's device:
+- **Mobile**: Local connection via Android Intents (same as native Android apps)
+- **Desktop** (Not available yet): If `remoteHostAuthority` is provided, remote connection via QR Code
+
+The composable automatically handles SSR checks and only registers on the client-side, so it's safe to use in frameworks like Next.js.
 
 ## Examples
 
