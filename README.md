@@ -157,6 +157,7 @@ useMobileWalletAdapter({
 ```
 
 Once registered, the wallet behavior automatically adapts to the user's device:
+
 - **Mobile**: Local connection via Android Intents (same as native Android apps)
 - **Desktop** (Not available yet): If `remoteHostAuthority` is provided, remote connection via QR Code
 
