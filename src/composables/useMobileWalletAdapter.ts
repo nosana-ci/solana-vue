@@ -1,4 +1,3 @@
-import { onMounted } from 'vue';
 import type { AppIdentity } from '@solana-mobile/mobile-wallet-adapter-protocol';
 import type { IdentifierArray } from '@wallet-standard/base';
 import {
@@ -29,7 +28,7 @@ export interface UseMobileWalletAdapterOptions {
 /**
  * Register the Solana Mobile Wallet Adapter for your Vue app.
  * This composable automatically handles SSR checks and registers the wallet adapter
- * when the component mounts (client-side only).
+ * immediately (client-side only). Can be used in components, plugins, or any setup context.
  *
  * Once registered, the wallet behavior automatically adapts to the user's device:
  * - **Mobile**: Local connection via Android Intents (same as native Android apps)
@@ -68,21 +67,36 @@ export interface UseMobileWalletAdapterOptions {
  * });
  * </script>
  * ```
+ *
+ * @example
+ * ```ts
+ * // Can also be used in Nuxt plugins
+ * export default defineNuxtPlugin({
+ *   setup() {
+ *     useMobileWalletAdapter({
+ *       appIdentity: {
+ *         name: 'My App',
+ *         uri: 'https://myapp.io',
+ *         icon: '/icon.png',
+ *       },
+ *     });
+ *   }
+ * });
+ * ```
  */
 export function useMobileWalletAdapter(options: UseMobileWalletAdapterOptions): void {
-  onMounted(() => {
-    // Only register on client-side (not SSR)
-    if (typeof window === 'undefined') {
-      return;
-    }
+  // Only register on client-side (not SSR)
+  if (typeof window === 'undefined') {
+    return;
+  }
 
-    registerMwa({
-      appIdentity: options.appIdentity,
-      authorizationCache: createDefaultAuthorizationCache(),
-      chains: options.chains ?? ['solana:devnet', 'solana:mainnet'],
-      chainSelector: createDefaultChainSelector(),
-      onWalletNotFound: createDefaultWalletNotFoundHandler(),
-      ...(options.remoteHostAuthority && { remoteHostAuthority: options.remoteHostAuthority }),
-    });
+  // Register immediately (not in onMounted) so it works in plugins and components
+  registerMwa({
+    appIdentity: options.appIdentity,
+    authorizationCache: createDefaultAuthorizationCache(),
+    chains: options.chains ?? ['solana:devnet', 'solana:mainnet'],
+    chainSelector: createDefaultChainSelector(),
+    onWalletNotFound: createDefaultWalletNotFoundHandler(),
+    ...(options.remoteHostAuthority && { remoteHostAuthority: options.remoteHostAuthority }),
   });
 }
